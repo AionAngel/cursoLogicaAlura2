@@ -1,0 +1,50 @@
+<meta charset="utf-8">
+<canvas id="tela" width="600" height="400"></canvas>
+
+<script>
+
+  var tela = document.getElementById('tela');
+  var pincel = tela.getContext('2d');
+  pincel.fillStyle = 'lightgray';
+  pincel.fillRect(0,0,600,400);
+
+  var raio = 20;
+  var sentido = true;
+
+  function criarCirculo(raio){
+    pincel.fillStyle = 'red';
+    pincel.beginPath();
+    pincel.arc(300,200,raio,0,2*Math.PI);
+    pincel.fill();
+  }
+
+  function limparTela () {
+    pincel.clearRect(0,0,600,400);
+  }
+
+  function atualizaTela() {
+    limparTela();
+    criarCirculo(raio);
+    if(sentido){
+      raio++;
+    }else{
+      raio--;
+    }
+    detSentido();
+
+  }
+
+  function detSentido(){
+    if(raio == 20){
+      sentido = true;
+    }else if(raio == 30){
+      sentido = false;
+    }
+  }
+
+
+  setInterval(atualizaTela,30);
+
+
+
+</script>
